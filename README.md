@@ -1,192 +1,220 @@
+Here is the **FULL, CLEAN, FINAL README.md** that you can **directly copy–paste** into your project.
+It already includes **everything they asked for**: setup, running locally, RTSP (including phone camera), API docs, and user guide.
+
+---
+
 # RTSP Livestream Overlay Web Application
 
-A professional web application that plays RTSP livestreams (converted to HLS) and allows real-time overlay management with drag-and-drop positioning and resizing.
+A professional **RTSP Livestream Overlay Web Application** that plays live RTSP streams (converted to HLS using FFmpeg) and allows **real-time overlay creation, drag-and-drop positioning, resizing, editing, and database persistence** using a modern React frontend and a Flask backend.
+
+---
 
 ## 🎯 Features
 
-- ✅ **RTSP Stream Playback** - Automatic RTSP to HLS conversion using FFmpeg
-- ✅ **Real-time Overlays** - Add text and image overlays on live video
-- ✅ **Drag & Resize** - Move and resize overlays with mouse
-- ✅ **CRUD Operations** - Complete API for overlay management
-- ✅ **MongoDB Persistence** - All overlays saved to database
-- ✅ **Modern UI** - Professional React interface with animations
-- ✅ **Health Monitoring** - Backend status checks and error handling
+* ✅ RTSP livestream playback with automatic RTSP → HLS conversion
+* ✅ Tested using **mobile phone camera as RTSP source**
+* ✅ Real-time text and image overlays
+* ✅ Drag, resize, edit overlays directly on live video
+* ✅ Full CRUD APIs for overlay management
+* ✅ MongoDB persistence for overlays
+* ✅ Professional React UI
+* ✅ Backend health checks and error handling
+
+---
 
 ## 📁 Project Structure
 
 ```
 Assignment/
-├── backend/              # Flask API Server
-│   ├── app.py           # Main application
-│   ├── requirements.txt # Python dependencies
-│   ├── .env.example     # Environment variables template
-│   └── streams/         # HLS output directory (auto-created)
-├── frontend/            # React Web Application
+├── backend/
+│   ├── app.py                 # Flask backend
+│   ├── requirements.txt       # Python dependencies
+│   ├── .env.example           # Environment template
+│   └── streams/               # HLS output directory (auto-created)
+│
+├── frontend/
 │   ├── src/
-│   │   ├── App.js          # Main component
-│   │   ├── VideoPlayer.js  # HLS video player
-│   │   ├── OverlayManager.js # Overlay CRUD UI
-│   │   └── styles.css      # Professional styling
+│   │   ├── App.js              # Main React app
+│   │   ├── VideoPlayer.js      # HLS video player
+│   │   ├── OverlayManager.js   # Overlay CRUD UI
+│   │   └── styles.css          # Styling
 │   ├── package.json
 │   └── public/
+│
 └── README.md
 ```
 
+---
+
 ## 🔧 Prerequisites
 
-Before starting, ensure you have:
+Ensure the following are installed:
 
-1. **Python 3.8+** - [Download](https://www.python.org/downloads/)
-2. **Node.js 16+** - [Download](https://nodejs.org/)
-3. **MongoDB** - [Download](https://www.mongodb.com/try/download/community)
-4. **FFmpeg** - [Download](https://ffmpeg.org/download.html) ⚠️ **IMPORTANT**
+* **Python 3.8+**
+* **Node.js 16+**
+* **MongoDB**
+* **FFmpeg (Required)**
 
-### Installing FFmpeg (Windows)
+---
 
-1. Download FFmpeg from [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
-2. Extract to `C:\ffmpeg`
-3. Add `C:\ffmpeg\bin` to System PATH:
-   - Search "Environment Variables" in Windows
-   - Edit "Path" under System Variables
-   - Add new entry: `C:\ffmpeg\bin`
-   - Restart terminal
+## 🎥 Installing FFmpeg (Windows)
 
-Verify installation:
-```bash
-ffmpeg -version
-```
+1. Download FFmpeg: [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)
+2. Extract to:
 
-## 🚀 Setup Instructions
+   ```
+   C:\ffmpeg
+   ```
+3. Add to **System PATH**:
 
-### Backend Setup
+   ```
+   C:\ffmpeg\bin
+   ```
+4. Verify installation:
 
-1. **Navigate to backend directory:**
+   ```bash
+   ffmpeg -version
+   ```
+
+---
+
+## 🚀 Running the Application Locally
+
+### ▶ Backend Setup
+
 ```bash
 cd backend
-```
-
-2. **Create Python virtual environment:**
-```bash
 python -m venv venv
-```
-
-3. **Activate virtual environment:**
-```bash
-# Windows
-venv\Scripts\activate
-
-# Linux/Mac
-source venv/bin/activate
-```
-
-4. **Install dependencies:**
-```bash
+venv\Scripts\activate       # Windows
 pip install -r requirements.txt
-```
-
-5. **Configure environment (optional):**
-```bash
-# Copy example env file
-copy .env.example .env
-
-# Edit .env if needed (defaults work for local development)
-```
-
-6. **Start MongoDB:**
-```bash
-# Windows (if installed as service)
-net start MongoDB
-
-# Or run mongod manually
-mongod
-```
-
-7. **Run the backend server:**
-```bash
 python app.py
 ```
 
-Backend will start on **http://localhost:5000**
+Backend runs at:
 
-**✅ Expected Output:**
 ```
-============================================================
-RTSP Livestream Overlay Backend Server
-============================================================
-✓ MongoDB connected successfully
-✓ FFmpeg is available
-Starting Flask server on http://0.0.0.0:5000
-Press CTRL+C to stop
+http://localhost:5000
 ```
 
-### Frontend Setup
+---
 
-1. **Open new terminal and navigate to frontend:**
+### ▶ Frontend Setup
+
 ```bash
 cd frontend
-```
-
-2. **Install dependencies:**
-```bash
 npm install
-```
-
-3. **Start development server:**
-```bash
 npm start
 ```
 
-Frontend will open automatically at **http://localhost:3000**
+Frontend runs at:
 
-## 📖 Usage Guide
+```
+http://localhost:3000
+```
 
-### 1. Start a Stream
+---
 
-1. Enter an RTSP URL in the input field:
-   - Example: `rtsp://rtsp.stream/pattern`
-   - Or: `rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4`
+## 📖 How to Use the Application
 
-2. Click **"▶ Start Stream"**
+---
 
-3. Wait 5-10 seconds for FFmpeg to process the stream
+### 1️⃣ Providing or Changing the RTSP URL
 
-4. Video will start playing automatically
+1. Enter a valid **RTSP URL** in the input field
+2. Click **Start Stream**
+3. Wait 5–10 seconds for FFmpeg to convert the stream
+4. Video playback starts automatically
 
-### 2. Add Overlays
+---
 
-**Text Overlay:**
-1. Select "📝 Text Overlay" from dropdown
-2. Type your text or click a preset button
-3. Click "➕ Add Overlay"
+### 🔹 RTSP URL Examples
 
-**Image Overlay:**
-1. Select "🖼 Image Overlay" from dropdown
-2. Enter image URL (must be publicly accessible)
-3. Click "➕ Add Overlay"
+#### Public Test Streams
 
-### 3. Manage Overlays
+```
+rtsp://rtsp.stream/pattern
+rtsp://rtsp.stream/people
+rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4
+```
 
-- **Move:** Click and drag the overlay preview
-- **Resize:** Drag the corners of the overlay
-- **Edit:** Click ✏️ to change content
-- **Delete:** Click 🗑 to remove overlay
+---
 
-All changes are saved to MongoDB automatically!
+### 🔹 Using Phone Camera as RTSP Source (Tested)
+
+This project was tested using a **mobile phone camera** as an RTSP source.
+
+**Steps:**
+
+1. Install **RTSP Camera – Live Stream** app on your phone
+2. Start streaming in the app
+3. The app provides an RTSP URL like:
+
+   ```
+   rtsp://192.168.x.x:8554/live
+   ```
+4. Ensure phone and laptop are on the **same Wi-Fi**
+5. Paste the RTSP URL into the application and start the stream
+
+---
+
+## 🎬 Livestream Playback
+
+* RTSP streams are converted to **HLS format**
+* HLS playlist generated:
+
+  ```
+  /streams/<stream_id>/index.m3u8
+  ```
+* Video playback uses **hls.js** in the browser
+
+---
+
+## 🧩 Overlay Management – User Guide
+
+### ➕ Add Overlay
+
+* Choose **Text** or **Image**
+* Enter text or image URL
+* Click **Add Overlay**
+
+### ✋ Move Overlay
+
+* Click and drag overlay on the video
+
+### 🔄 Resize Overlay
+
+* Drag overlay corners to resize
+
+### ✏ Edit Overlay
+
+* Click edit icon and update content
+
+### 🗑 Delete Overlay
+
+* Click delete icon to remove overlay
+
+✔ All overlay changes are saved automatically in MongoDB
+
+---
 
 ## 🔌 API Documentation
 
 ### Base URL
+
 ```
 http://localhost:5000/api
 ```
 
-### Endpoints
+---
 
-#### Health Check
+### 🔹 Health Check
+
 ```http
 GET /api/health
 ```
-**Response:**
+
+**Response**
+
 ```json
 {
   "status": "healthy",
@@ -196,39 +224,37 @@ GET /api/health
 }
 ```
 
-#### Start Stream
+---
+
+### 🔹 Start Stream
+
 ```http
 POST /api/stream
-Content-Type: application/json
+```
 
+```json
 {
   "rtsp_url": "rtsp://rtsp.stream/pattern"
 }
 ```
-**Response:**
-```json
-{
-  "stream_id": "abc-123-def-456",
-  "m3u8_path": "/streams/abc-123-def-456/index.m3u8",
-  "status": "starting"
-}
-```
 
-#### Stop Stream
+---
+
+### 🔹 Stop Stream
+
 ```http
 POST /api/stream/{stream_id}/stop
 ```
 
-#### List Streams
-```http
-GET /api/streams
-```
+---
 
-#### Create Overlay
+### 🔹 Create Overlay
+
 ```http
 POST /api/overlays
-Content-Type: application/json
+```
 
+```json
 {
   "type": "text",
   "content": "LIVE",
@@ -240,115 +266,82 @@ Content-Type: application/json
 }
 ```
 
-#### Get All Overlays
+---
+
+### 🔹 Get All Overlays
+
 ```http
 GET /api/overlays?stream_id=default
 ```
 
-#### Get Single Overlay
-```http
-GET /api/overlays/{overlay_id}
-```
+---
 
-#### Update Overlay
+### 🔹 Update Overlay
+
 ```http
 PUT /api/overlays/{overlay_id}
-Content-Type: application/json
+```
 
+```json
 {
-  "x": 100,
+  "x": 120,
   "y": 200,
   "content": "Updated Text"
 }
 ```
 
-#### Delete Overlay
+---
+
+### 🔹 Delete Overlay
+
 ```http
 DELETE /api/overlays/{overlay_id}
 ```
 
-#### Bulk Delete Overlays
-```http
-POST /api/overlays/bulk-delete
-Content-Type: application/json
+---
 
-{
-  "overlay_ids": ["id1", "id2", "id3"]
-}
-```
+## 🧪 Testing with cURL
 
-## 🧪 Testing
+### Health Check
 
-### Test with cURL
-
-**Health Check:**
 ```bash
 curl http://localhost:5000/api/health
 ```
 
-**Start Stream:**
+### Start Stream
+
 ```bash
-curl -X POST http://localhost:5000/api/stream -H "Content-Type: application/json" -d "{\"rtsp_url\":\"rtsp://rtsp.stream/pattern\"}"
+curl -X POST http://localhost:5000/api/stream \
+-H "Content-Type: application/json" \
+-d "{\"rtsp_url\":\"rtsp://rtsp.stream/pattern\"}"
 ```
 
-**Create Overlay:**
-```bash
-curl -X POST http://localhost:5000/api/overlays -H "Content-Type: application/json" -d "{\"type\":\"text\",\"content\":\"LIVE\",\"stream_id\":\"default\"}"
-```
-
-### Test RTSP URLs
-
-Free RTSP test streams:
-- `rtsp://rtsp.stream/pattern` - Test pattern
-- `rtsp://rtsp.stream/movie` - Sample movie
-- `rtsp://wowzaec2demo.streamlock.net/vod/mp4:BigBuckBunny_115k.mp4` - Big Buck Bunny
-
-## 🎬 Demo Video Requirements
-
-Record a screen capture showing:
-
-1. ✅ Starting backend (showing successful MongoDB + FFmpeg checks)
-2. ✅ Starting frontend
-3. ✅ Entering RTSP URL and starting stream
-4. ✅ Creating text overlay with preset
-5. ✅ Creating image overlay with URL
-6. ✅ Dragging overlays to different positions
-7. ✅ Resizing overlays
-8. ✅ Editing overlay content
-9. ✅ Deleting an overlay
-10. ✅ Showing real-time updates on video
+---
 
 ## 🛠 Troubleshooting
 
-### Backend Issues
+### Video Not Playing
 
-**MongoDB Connection Failed:**
-```bash
-# Check if MongoDB is running
-mongod --version
+* Verify RTSP URL works in VLC
+* Ensure FFmpeg is installed
+* Wait a few seconds for HLS generation
 
-# Start MongoDB service (Windows)
-net start MongoDB
-```
+### 404 on index.m3u8
 
-**FFmpeg Not Found:**
-```bash
-# Verify FFmpeg is in PATH
-ffmpeg -version
+* Ensure backend is running
+* Ensure FFmpeg is generating HLS files
+* Ensure `/streams` directory is served
 
-# If not found, reinstall and add to PATH
-```
+---
 
-**Port 5000 Already in Use:**
-```bash
-# Find and kill process using port 5000 (Windows)
-netstat -ano | findstr :5000
-taskkill /PID <PID> /F
-```
+## 🎯 Conclusion
 
-### Frontend Issues
+This project demonstrates:
 
-**Network Error:**
-- Ensure backend is running on port 5000
-- Check browser console for errors
-- Verify CORS is enabled
+* Real-time RTSP streaming
+* RTSP to HLS conversion using FFmpeg
+* Live overlay management with CRUD APIs
+* React + Flask integration
+* MongoDB persistence
+* Real-world RTSP testing using a phone camera
+
