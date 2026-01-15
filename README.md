@@ -1,8 +1,3 @@
-Here is the **FULL, CLEAN, FINAL README.md** that you can **directly copy–paste** into your project.
-It already includes **everything they asked for**: setup, running locally, RTSP (including phone camera), API docs, and user guide.
-
----
-
 # RTSP Livestream Overlay Web Application
 
 A professional **RTSP Livestream Overlay Web Application** that plays live RTSP streams (converted to HLS using FFmpeg) and allows **real-time overlay creation, drag-and-drop positioning, resizing, editing, and database persistence** using a modern React frontend and a Flask backend.
